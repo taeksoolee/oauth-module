@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="kakaoLogin"></div>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script src="/auth-script.js"></script>
+
+  <script>
+    (async () => {
+      const config = await (await fetch('/apiKey')).json();
+      initAuthConfig(config);
+
+      initKakaoAuth(
+        document.getElementById('kakaoLogin'), 
+        function successCallback(res) {
+          console.log(res);
+        },
+        function failedCallback(err) {
+          console.log(err);
+        },
+      );
+    })();
+  </script>
+</body>
+</html>
